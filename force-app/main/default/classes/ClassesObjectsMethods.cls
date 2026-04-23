@@ -26,7 +26,7 @@
  * Math class: https://developer.salesforce.com/docs/atlas.en-us.apexref.meta/apexref/apex_methods_system_math.htm
  * Classes: https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_classes_understanding.htm
  *
- * @author Your Name
+ * @author Naveen (Testhing VSCode setup)
  */
 
 public with sharing class ClassesObjectsMethods {
@@ -40,17 +40,31 @@ public with sharing class ClassesObjectsMethods {
      */
     public static List<String> practiceStringMethods() {
         // Initialize a String with 'Hello, Salesforce!'
-        
-        // Get the length of the String        
+        String s = 'Hello, Salesforce!';
+
+        // Now create a list
+          List<String> lst = new List<String>();
+
+        // Get the length of the String     
+        // but since .length is integer and list is String so convert it by .valueof
+        String lengthtoString = String.valueOf(s.length());
+
         // Get a substring of the String of the first 5 characters
+        String subString = s.substring(0,5); //used substring method
+    
         // Convert the String to lower case
-        
+         String stringLowerCase = s.toLowerCase();
+    
         // Return the list with the string data
         // In the first position add the string length
+        lst.add(lengthtoString);
         // In the second position add the substring
+        lst.add(subString);
         // In the third position add the string in lower case
+        lst.add(stringLowerCase);
+        system.debug(lst);
 
-        return null; // Replace null with the variable you used to store the result
+        return lst; // Replace null with the variable you used to store the result
     }
 
     /**
@@ -61,15 +75,24 @@ public with sharing class ClassesObjectsMethods {
      * @return A list of boolean values indicating whether the string starts with 'Sales', ends with 'Force', or contains 'Awesome'.
      */
     public static List<Boolean> checkStringContent(String input) {
+        //String input = 'Salesforce is Awesome!'; to test my code and future reference;
         // Initialize a list to store the results
-        
+        List<Boolean> lst2 = new List<Boolean>(); 
+
         // Check if the string starts with 'Sales'
-        
+        Boolean startswithSales = input.startsWith('Sales'); // used startsWith method
+        lst2.add(startswithSales);
+
         // Check if the string ends with 'Force'
+        Boolean endswithForce = input.endsWith('Force'); //used endswith method
+        lst2.add(endswithForce);
         
         // Check if the string contains 'Awesome'
+        Boolean containsAwesome = input.contains('Awesome'); //used contains method
+        lst2.add(containsAwesome);
+        system.debug(lst2);
         
-        return null; // Replace null with the variable you used to store the result
+        return lst2; // Replace null with the variable you used to store the result
     }
 
     /**
@@ -80,16 +103,24 @@ public with sharing class ClassesObjectsMethods {
      * @return A string consisting of only unique words from the input sentence.
      */
     public static String removeDuplicateWords(String sentence) {
+        //String sentence = 'Hello Hello Salesforce Salesforce'; // to test my code and future reference
         // Split the sentence into words
+        List<String> splitWords = sentence.split(' '); // using split method to split and ' ' is used to identify space b/w words
 
         // Create a set to store the unique words
+        Set<String> uniqueSet = new Set<String>();
 
-        // Add each word to the set
-
+        // Add each word to the set 
+        for (String word : splitWords ){ //iterating through splitWords list to add each word to set
+            uniqueSet.add(word);         // add to the set
+        }
         // Join the unique words back into a sentence
-
+        String finalSentence = String.join(new List <String> (uniqueSet), ' '); //Convert the set to a list ad add words to sentence with space
+        System.debug(finalSentence);
+        
         // Return the sentence with unique words
-        return null; // Replace null with the variable you used to store the result
+        
+        return finalSentence; // Replace null with the variable you used to store the result
     }
 
     /**
@@ -102,7 +133,7 @@ public with sharing class ClassesObjectsMethods {
      */
     public static Integer countVowels(String str) {
         // Initialize the result Integer
-
+        Integer result = 0;
         /*
         for () {
             // get individual characters from the string - hint use substring or split
